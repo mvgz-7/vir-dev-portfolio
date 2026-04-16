@@ -1,0 +1,176 @@
+'use client';
+
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Briefcase, Send } from 'lucide-react';
+
+interface HomeSectionProps {
+  onScrollVisibilityChange?: (isVisible: boolean) => void;
+}
+
+export default function HomeSection({ onScrollVisibilityChange }: HomeSectionProps) {
+  const [showScroll, setShowScroll] = useState(true);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const isAtTop = scrollPosition < 100;
+      setShowScroll(isAtTop);
+      onScrollVisibilityChange?.(isAtTop);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [onScrollVisibilityChange]);
+
+  const buttonBaseClass = "flex items-center gap-3 px-7 py-3 text-md font-bold transition-all duration-300 active:scale-95";
+  const buttonTextStyle = { 
+    fontFamily: 'Arial, sans-serif', 
+    letterSpacing: '-0.06em',
+    borderRadius: '10px' 
+  };
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-20 bg-white"
+    >
+      <style jsx global>{`
+        /* Roaming restricted to very small movements at the corners */
+        @keyframes cornerRoam {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(2vw, 2vh) scale(1.05); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes shineMove {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+
+        .animate-corner { animation: cornerRoam 20s ease-in-out infinite; }
+
+        .greetings-container {
+          position: relative;
+          width: 400px;
+          height: 300px;
+        }
+
+        .shine-layer {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          background: linear-gradient(
+            110deg,
+            transparent 25%,
+            rgba(255, 255, 255, 0.4) 45%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0.4) 55%,
+            transparent 75%
+          );
+          background-size: 200% 100%;
+          animation: shineMove 4s infinite linear;
+          -webkit-mask-image: url('/greetings.png');
+          mask-image: url('/greetings.png');
+          -webkit-mask-size: contain;
+          mask-size: contain;
+          -webkit-mask-repeat: no-repeat;
+          mask-position: center;
+          pointer-events: none;
+        }
+      `}</style>
+
+      {/* --- MOUSE FOLLOWER GRADIENT --- */}
+      <div 
+        className="fixed pointer-events-none z-0 transition-transform duration-500 ease-out"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          transform: 'translate(-50%, -50%)',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(188, 0, 135, 0.1) 0%, rgba(188, 0, 135, 0) 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+
+      {/* --- CORNER ANCHORED GRADIENTS --- */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Top Right Corner */}
+        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]">
+          <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
+        </div>
+
+        {/* Top Left Corner (Subtle Orange) */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] animate-corner opacity-100 blur-[120px]" style={{ animationDelay: '-5s' }}>
+          <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
+        </div>
+
+        {/* Bottom Right Corner */}
+        <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]" style={{ animationDelay: '-10s' }}>
+          <Image src="/pink-gradient-bottom-left.png" alt="" fill className="object-contain" />
+        </div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex items-center justify-between gap-16">
+        
+        {/* Left side - Greetings */}
+        <div className="flex-1 flex justify-center">
+          <div className="greetings-container">
+            <Image
+              src="/greetings.png"
+              alt="hello ! i'm Virla"
+              fill
+              className="object-contain"
+              priority 
+            />
+            <div className="shine-layer" />
+          </div>
+        </div>
+
+        {/* Right side - Content */}
+        <div className="flex-1 flex flex-col gap-10 -ml-16">
+          <div 
+            className="text-black font-[Arial] text-2xl leading-snug text-justify max-w-md" 
+            style={{ letterSpacing: '-0.06em' }}
+          >
+            I'm a <span className="font-bold">Full-stack Web Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern front-end technologies and I am open to different types of web projects.
+          </div>
+
+          <div className="flex gap-4 items-center">
+            <button 
+              className={`${buttonBaseClass} bg-[#BC0087] text-white hover:bg-[#a00073] hover:shadow-lg group`}
+              style={buttonTextStyle}
+            >
+              <Briefcase size={22} className="text-white transition-transform group-hover:scale-110" />
+              View My Work
+            </button>
+
+            <button 
+              className={`${buttonBaseClass} bg-white text-[#BC0087] border-2 border-[#BC0087] hover:bg-[#BC0087] hover:text-white group`}
+              style={buttonTextStyle}
+            >
+              <Send size={22} className="text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {showScroll && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <Image src="/scroll-down.png" alt="Scroll down" width={80} height={100} className="w-auto h-auto" />
+        </div>
+      )}
+    </section>
+  );
+}
