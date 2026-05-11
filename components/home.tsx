@@ -13,6 +13,7 @@ interface HomeSectionProps {
 export default function HomeSection({ onScrollVisibilityChange, onNavigateSection, onScrollToFooter }: HomeSectionProps) {
   const [showScroll, setShowScroll] = useState(true);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,9 +131,11 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
               alt="hello ! i'm Virla"
               fill
               className="object-contain"
-              priority 
+              priority
+              onLoad={() => setImageLoaded(true)}
+              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
             />
-            <div className="shine-layer" />
+            <div className="shine-layer" style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }} />
           </div>
         </div>
 

@@ -139,20 +139,24 @@ export default function ProjectsSection() {
 
       <div className="relative w-full h-auto mt-40 flex flex-col justify-center items-center px-10">
         <div className="max-w-7xl w-full text-center mb-10">
+          <FadeInProject index={projectCards.length}>
             <h2 
               className="text-2xl font-normal text-gray-600"
               style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}
               > Some of the publication materials I designed for different organizations.
             </h2>
+          </FadeInProject>
         </div>
         
-        <div className="max-w-[80%] relative overflow-hidden border-[10px] border-[#D4C4E9]">
-          <img
-            src="/pubmats.png" 
-            alt="Publication Materials"
-            className="w-full h-auto block"
-          />
-        </div>
+        <FadeInProject index={projectCards.length + 1}>
+          <div className="max-w-[80%] mx-auto relative overflow-hidden border-[10px] border-[#D4C4E9]">
+            <img
+              src="/pubmats.png" 
+              alt="Publication Materials"
+              className="w-full h-auto block"
+            />
+          </div>
+        </FadeInProject>
       </div>
     </section>
   );
