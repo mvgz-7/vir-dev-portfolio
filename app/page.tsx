@@ -8,19 +8,19 @@ import AboutSection from '@/components/about';
 import SkillsSection from '@/components/skills';
 import ProjectsSection from '@/components/projects';
 import ExperiencesSection from '@/components/experiences.tsx';
-import PubmatsSection from '@/components/pubmats.tsx';
-import CuteDivider from '@/components/CuteDivider';
+import Footer from '@/components/footer';
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState('home');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
+  // Section Refs
   const homeRef = useRef<HTMLDivElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const experiencesRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -31,7 +31,6 @@ export default function Page() {
   }, []);
 
   const handleNavigation = (section: string) => {
-    setActiveSection(section);
     let ref;
     switch (section) {
       case 'home': ref = homeRef; break;
@@ -44,9 +43,13 @@ export default function Page() {
     ref?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main className="relative w-full bg-white overflow-x-hidden">
-      {/* --- GLOBAL MOUSE FOLLOWER (LIGHTER) --- */}
+      {/* --- GLOBAL MOUSE FOLLOWER --- */}
       <div 
         className="fixed pointer-events-none z-[9999] transition-transform duration-700 ease-out"
         style={{
@@ -55,7 +58,6 @@ export default function Page() {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '600px',
-          /* Alpha reduced to 0.07 for better text readability */
           background: 'radial-gradient(circle, rgba(188, 0, 135, 0.07) 0%, rgba(188, 0, 135, 0) 70%)',
           filter: 'blur(80px)',
         }}
@@ -63,15 +65,36 @@ export default function Page() {
 
       <Header activeSection={activeSection} onNavigate={handleNavigation} />
       
-      <div ref={homeRef}><HomeSection /></div>
-      <div ref={dividerRef}><TechDivider /></div>
-      <div ref={aboutRef}><AboutSection /></div>
-      <div ref={dividerRef}><TechDivider /></div>
-      <div ref={experiencesRef}><ExperiencesSection /></div>
-      <div ref={projectsRef} className="bg-transparent"><ProjectsSection /></div>
-      <div ref={dividerRef}><TechDivider /></div>
-      <div ref={skillsRef} className="bg-transparent"><SkillsSection /></div>
-      
+      <div ref={homeRef} style={{ minHeight: '100vh' }}>
+        <HomeSection 
+          onNavigateSection={handleNavigation} 
+          onScrollToFooter={scrollToFooter} 
+        />
+      </div>
+
+      <TechDivider />
+
+      <div ref={aboutRef} style={{ minHeight: '100vh' }}>
+        <AboutSection />
+      </div>
+
+      <TechDivider />
+
+      <div ref={experiencesRef}>
+        <ExperiencesSection />
+      </div>
+
+      <div ref={projectsRef}>
+        <ProjectsSection />
+      </div>
+
+      <TechDivider />
+
+      <div ref={skillsRef}>
+        <SkillsSection />
+      </div>
+
+      <Footer ref={footerRef} />
     </main>
   );
 }

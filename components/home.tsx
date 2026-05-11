@@ -6,9 +6,11 @@ import { Briefcase, Send } from 'lucide-react';
 
 interface HomeSectionProps {
   onScrollVisibilityChange?: (isVisible: boolean) => void;
+  onNavigateSection?: (section: string) => void;
+  onScrollToFooter?: () => void;
 }
 
-export default function HomeSection({ onScrollVisibilityChange }: HomeSectionProps) {
+export default function HomeSection({ onScrollVisibilityChange, onNavigateSection, onScrollToFooter }: HomeSectionProps) {
   const [showScroll, setShowScroll] = useState(true);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -147,6 +149,7 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
             <button 
               className={`${buttonBaseClass} bg-[#BC0087] text-white hover:bg-[#a00073] hover:shadow-lg group`}
               style={buttonTextStyle}
+              onClick={() => onNavigateSection?.('projects')}
             >
               <Briefcase size={26} className="text-white transition-transform group-hover:scale-110" />
               View My Work
@@ -155,6 +158,7 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
             <button 
               className={`${buttonBaseClass} bg-white text-[#BC0087] border-2 border-[#BC0087] hover:bg-[#BC0087] hover:text-white group`}
               style={buttonTextStyle}
+              onClick={() => onScrollToFooter?.()}
             >
               <Send size={26} className="text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
               Get in Touch

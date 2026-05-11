@@ -39,7 +39,7 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
   const remainingCount = (project.screenshots?.length || 0) - 3;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[#99026F] overflow-y-auto selection:bg-white selection:text-[#99026F]">
+    <div className="fixed inset-0 z-[100] bg-gradient-to-br from-[#99026F] to-[#FF00B8] overflow-y-auto selection:bg-white selection:text-[#99026F]">
       
       {/* Lightbox / Enlarged View */}
       {selectedImgIndex !== null && (
@@ -49,23 +49,25 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
           </button>
           <button onClick={showPrev} className="absolute left-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronLeft size={48} /></button>
           <div className="relative w-full h-full max-w-5xl max-h-[80vh]">
-            <Image src={project.screenshots[selectedImgIndex]} alt="Enlarged" fill className="object-contain" />
+            <Image src={project.screenshots[selectedImgIndex]} alt="Enlarged" fill className="object-contain" /> 
           </div>
           <button onClick={showNext} className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronRight size={48} /></button>
         </div>
       )}
 
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 h-20 flex items-center justify-between px-8 z-[110] bg-[#BC0087] shadow-xl border-b-2 border-white/40">
-        <h1 className="text-3xl font-bold text-white uppercase" style={textStyle}>{project.title}</h1>
+      <div className="fixed top-0 left-0 right-0 h-20 flex items-center justify-between px-8 z-[110] bg-[#710150] shadow-xl border-b-2 border-white/40">
+        <h1 className="text-2xl font-bold text-white uppercase" style={textStyle}>{project.title}</h1>
         <button onClick={onClose} className="p-2 text-white hover:bg-white/20 rounded-md border-2 border-white/50 transition-all"><X size={24} /></button>
       </div>
 
-      {/* Main Content Container - max-w increased to 7xl */}
-      <div className="pt-32 pb-20 max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+      {/* Main Content Container */}
+      <div className="pt-32 pb-20 max-w-7xl mx-auto px-8 space-y-10">
+        
+        {/* Top Grid: Gallery, Overview, and Key Features */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch">
           
-          {/* Main Content Column - space-y decreased to 8 */}
+          {/* Left Column: Gallery and Overview */}
           <div className="lg:col-span-2 space-y-8">
             {/* Gallery */}
             <div className="space-y-4">
@@ -91,30 +93,17 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
                 <p className="text-lg text-gray-800 leading-relaxed text-justify font-medium" style={textStyle}>{project.fullDetails}</p>
               </div>
             </div>
-
-            {/* Reviews */}
-            <div className="space-y-4">
-              <h2 className="text-4xl font-bold text-white" style={textStyle}>User Reviews</h2>
-              <div className="grid gap-4">
-                {(project.reviews || []).map((review: any, i: number) => (
-                  <div key={i} className="bg-white/90 p-5 rounded-md shadow-lg border-2 border-white/60 border-l-[12px] border-l-[#FF00B8]">
-                    <p className="text-sm text-gray-900 italic mb-2 font-semibold" style={textStyle}>"{review.text}"</p>
-                    <p className="text-xs font-black text-[#BC0087] tracking-wider uppercase" style={textStyle}>— {review.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6 lg:mt-12">
-            <div className="bg-white/90 rounded-md shadow-xl border-2 border-white/60 overflow-hidden">
-              {/* Key Features Title aligned to the Left */}
+          {/* Right Column: Key Features matched to height with justified spacing */}
+          <div className="flex flex-col lg:pt-12">
+            <div className="bg-white/90 rounded-md shadow-xl border-2 border-white/60 overflow-hidden h-full flex flex-col">
               <div className="bg-[#BC0087] p-3 border-b-2 border-white/20 flex justify-start">
                 <h2 className="text-xl font-bold text-white" style={textStyle}>Key Features</h2>
               </div>
-              <div className="p-4">
-                <ul className="space-y-3">
+              <div className="p-6 flex-grow flex flex-col">
+                {/* justify-between ensures the last item hits the bottom of the container */}
+                <ul className="flex flex-col justify-between h-full">
                   {project.features?.map((feature: any, i: number) => (
                     <li key={i} className="flex items-start gap-3 group">
                       <div className="mt-1 flex-shrink-0"><CheckCircle2 size={16} className="text-[#BC0087]" /></div>
@@ -124,18 +113,22 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
                 </ul>
               </div>
             </div>
-
-            <div className="bg-white/90 p-5 rounded-md shadow-xl border-2 border-white/60">
-              <h2 className="text-[12px] font-black text-[#BC0087] mb-3 uppercase tracking-widest border-b-2 border-[#BC0087]/20 pb-1" style={textStyle}>Core Technologies</h2>
-              <div className="flex flex-wrap gap-2.5">
-                {project.techStack?.map((tech: string) => (
-                  <span key={tech} className="px-3 py-1.5 bg-[#99026F] text-white text-[10px] font-bold rounded-sm uppercase border border-white/30 shadow-sm" style={textStyle}>{tech}</span>
-                ))}
-              </div>
-            </div>
           </div>
-
         </div>
+
+        {/* User Reviews */}
+        <div className="space-y-4">
+          <h2 className="text-4xl font-bold text-white" style={textStyle}>User Reviews</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {(project.reviews || []).map((review: any, i: number) => (
+              <div key={i} className="bg-white/90 p-6 rounded-md shadow-lg border-2 border-white/60 border-l-[12px] border-l-[#FF00B8]">
+                <p className="text-md text-gray-900 italic mb-3 font-normal leading-relaxed" style={textStyle}>"{review.text}"</p>
+                <p className="text-xs font-black text-[#BC0087] tracking-wider uppercase" style={textStyle}>— {review.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );

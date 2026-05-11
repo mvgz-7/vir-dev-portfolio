@@ -4,38 +4,11 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface HeaderProps {
+  activeSection: string;
   onNavigate: (section: string) => void;
 }
 
-export default function Header({ onNavigate }: HeaderProps) {
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const sections = ['home', 'about', 'experiences', 'projects', 'skills'];
-    
-    const observerOptions = {
-      root: null,
-      threshold: 0.5,
-    };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
+export default function Header({ activeSection, onNavigate }: HeaderProps) {
   const isActive = (section: string) => activeSection === section;
 
   return (

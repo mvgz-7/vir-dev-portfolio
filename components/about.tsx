@@ -47,7 +47,7 @@ export default function AboutSection() {
 
       <div className="relative w-full">
         <Image
-          src="/aboutme.png"
+          src="/about-me.png"
           alt="About Me"
           width={1920}
           height={1080}

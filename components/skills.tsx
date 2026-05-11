@@ -5,14 +5,14 @@ import Image from 'next/image';
 
 const skillCards = [
   {
-    title: 'Graphic Design',
-    description: 'Creating publication materials, infographics, posters, banners, and powerpoint presentations.',
-    logos: ['/canva.png', '/figma.png'],
-  },
-  {
     title: 'Web Development',
     description: 'Building responsive web applications with a focus on clean code and user experience.',
     logos: ['/react.png', '/typescript.png', '/tailwind.png', '/javascript.png', '/php.png', '/sql.png', '/figma.png'],
+  },
+  {
+    title: 'Graphic Design',
+    description: 'Creating publication materials, infographics, posters, banners, and powerpoint presentations.',
+    logos: ['/canva.png', '/figma.png'],
   },
   {
     title: 'Game Development',
