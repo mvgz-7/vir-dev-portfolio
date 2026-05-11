@@ -30,6 +30,36 @@ export default function Page() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY + window.innerHeight / 2; // middle of viewport
+      const sections = [
+        { name: 'home', ref: homeRef },
+        { name: 'about', ref: aboutRef },
+        { name: 'experiences', ref: experiencesRef },
+        { name: 'projects', ref: projectsRef },
+        { name: 'skills', ref: skillsRef },
+      ];
+
+      for (const section of sections) {
+        const el = section.ref.current;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          const bottom = top + rect.height;
+          if (scrollY >= top && scrollY < bottom) {
+            setActiveSection(section.name);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // call once to set initial active section
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleNavigation = (section: string) => {
     let ref;
     switch (section) {
@@ -65,7 +95,7 @@ export default function Page() {
 
       <Header activeSection={activeSection} onNavigate={handleNavigation} />
       
-      <div ref={homeRef} style={{ minHeight: '100vh' }}>
+      <div ref={homeRef} data-section="home" style={{ minHeight: '100vh' }}>
         <HomeSection 
           onNavigateSection={handleNavigation} 
           onScrollToFooter={scrollToFooter} 
@@ -74,23 +104,23 @@ export default function Page() {
 
       <TechDivider />
 
-      <div ref={aboutRef} style={{ minHeight: '100vh' }}>
+      <div ref={aboutRef} data-section="about" style={{ minHeight: '100vh' }}>
         <AboutSection />
       </div>
 
       <TechDivider />
 
-      <div ref={experiencesRef}>
+      <div ref={experiencesRef} data-section="experiences">
         <ExperiencesSection />
       </div>
 
-      <div ref={projectsRef}>
+      <div ref={projectsRef} data-section="projects">
         <ProjectsSection />
       </div>
 
       <TechDivider />
 
-      <div ref={skillsRef}>
+      <div ref={skillsRef} data-section="skills">
         <SkillsSection />
       </div>
 
