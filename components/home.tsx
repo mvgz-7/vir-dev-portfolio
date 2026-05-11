@@ -32,11 +32,12 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
     };
   }, [onScrollVisibilityChange]);
 
-  const buttonBaseClass = "flex items-center gap-3 px-7 py-3 text-md font-bold transition-all duration-300 active:scale-95";
+  // Increased padding (px-10, py-4) and text size (text-lg) for bigger buttons
+  const buttonBaseClass = "flex items-center gap-4 px-10 py-4 text-lg font-bold transition-all duration-300 active:scale-95";
   const buttonTextStyle = { 
     fontFamily: 'Arial, sans-serif', 
     letterSpacing: '-0.06em',
-    borderRadius: '10px' 
+    borderRadius: '12px' 
   };
 
   return (
@@ -45,7 +46,6 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-20 bg-white"
     >
       <style jsx global>{`
-        /* Roaming restricted to very small movements at the corners */
         @keyframes cornerRoam {
           0% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(2vw, 2vh) scale(1.05); }
@@ -61,8 +61,8 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
 
         .greetings-container {
           position: relative;
-          width: 400px;
-          height: 300px;
+          width: 500px;
+          height: 400px;
         }
 
         .shine-layer {
@@ -105,23 +105,20 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
 
       {/* --- CORNER ANCHORED GRADIENTS --- */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Top Right Corner */}
         <div className="absolute -top-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]">
           <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
         </div>
 
-        {/* Top Left Corner (Subtle Orange) */}
-        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] animate-corner opacity-100 blur-[120px]" style={{ animationDelay: '-5s' }}>
+        <div className="absolute -top-40 -left-40 w-[700px] h-[700px] animate-corner opacity-60 blur-[80px]" style={{ animationDelay: '-5s' }}>
           <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
         </div>
 
-        {/* Bottom Right Corner */}
         <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]" style={{ animationDelay: '-10s' }}>
           <Image src="/pink-gradient-bottom-left.png" alt="" fill className="object-contain" />
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex items-center justify-between gap-16">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex items-center justify-between gap-20">
         
         {/* Left side - Greetings */}
         <div className="flex-1 flex justify-center">
@@ -138,20 +135,20 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
         </div>
 
         {/* Right side - Content */}
-        <div className="flex-1 flex flex-col gap-10 -ml-16">
+        <div className="flex-1 flex flex-col gap-10">
           <div 
-            className="text-black font-[Arial] text-2xl leading-snug text-justify max-w-md" 
+            className="text-black font-[Arial] text-3xl leading-snug text-justify max-w-xl" 
             style={{ letterSpacing: '-0.06em' }}
           >
-            I'm a <span className="font-bold">Full-stack Web Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern front-end technologies and I am open to different types of web projects.
+            I'm a <span className="font-bold">Web Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern front-end technologies and I am open to different types of web projects.
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-6 items-center">
             <button 
               className={`${buttonBaseClass} bg-[#BC0087] text-white hover:bg-[#a00073] hover:shadow-lg group`}
               style={buttonTextStyle}
             >
-              <Briefcase size={22} className="text-white transition-transform group-hover:scale-110" />
+              <Briefcase size={26} className="text-white transition-transform group-hover:scale-110" />
               View My Work
             </button>
 
@@ -159,7 +156,7 @@ export default function HomeSection({ onScrollVisibilityChange }: HomeSectionPro
               className={`${buttonBaseClass} bg-white text-[#BC0087] border-2 border-[#BC0087] hover:bg-[#BC0087] hover:text-white group`}
               style={buttonTextStyle}
             >
-              <Send size={22} className="text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
+              <Send size={26} className="text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
               Get in Touch
             </button>
           </div>

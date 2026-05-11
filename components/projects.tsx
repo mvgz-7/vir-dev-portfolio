@@ -1,129 +1,138 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, ReactNode } from 'react';
 import { ExternalLink, Cpu, Layout, Database } from 'lucide-react';
 import ProjectModal from './ProjectModal';
+
+function FadeInProject({ children, index }: { children: ReactNode; index: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const currentScrollY = window.scrollY;
+        const isScrollingDown = currentScrollY > lastScrollY.current;
+
+        if (entry.isIntersecting) {
+          if (isScrollingDown) {
+            setIsVisible(false); 
+            setTimeout(() => setIsVisible(true), 10);
+          } else {
+            setIsVisible(true);
+          }
+        } else if (isScrollingDown) {
+          setIsVisible(false);
+        }
+        lastScrollY.current = currentScrollY;
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={`transition-all duration-1000 ease-out h-full ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+      {children}
+    </div>
+  );
+}
 
 const projectCards = [
   {
     id: 'vehicle-traffic',
     title: 'Vehicle Counting and Dynamic Traffic Light System',
-    // Renamed 'image' to 'bannerImage' and 'languages' to 'techStack' to match ProjectModal props
     bannerImage: '/project-traffic.jpg', 
-    screenshots: ['/traffic-1.jpg', '/traffic-2.jpg'],
+    screenshots: ['/traffic1.jpg', '/traffic2.jpg', '/traffic3.jpg', '/traffic4.jpg', '/traffic5.jpg', '/traffic6.jpg', '/traffic7.jpg', '/traffic8.jpg', '/traffic9.jpg'],
+    fullDetails: "The objective of this project is to develop a system that automates vehicle counting and dynamically adjusts traffic light timings to improve traffic flow at the Capitol View and Graceland intersections in Malolos, Bulacan. The target users include the City Traffic Management Office (CTMO) for daily operations, and the CDRRMO / PDRRMO for urban planning and emergency coordination.",
+    techStack: ['Python', 'FastAPI', 'React', 'Next.js', 'YOLO11', 'SQL', 'OpenCV'],
     description: [
       'Developed a computer vision system using YOLO11 for real-time vehicle detection.',
       'Implemented dynamic traffic light logic to optimize flow based on vehicle density.',
-      'Designed a dashboard for traffic monitoring and historical data analysis.'
     ],
-    techStack: ['Python', 'FastAPI', 'React', 'Next.js', 'Tailwind CSS', 'SQL'],
-    fullDetails: "This undergraduate thesis project addresses traffic congestion at Capitol View and Graceland intersections in Malolos, Bulacan. By replacing fixed timers with a Vehicle Actuated Control (VAC) algorithm, the system dynamically adjusts green light durations based on real-time vehicle density detected via CCTV.",
     features: [
-      { icon: <Cpu size={20} />, text: "Real-time Detection using YOLO11m." },
-      { icon: <Layout size={20} />, text: "Dynamic Signal Control via VAC algorithm." },
-      { icon: <Database size={20} />, text: "Traffic Analytics and reporting." }
+      { text: "Real-time Vehicle Detection & Classification using YOLO11m." },
+      { text: "Dynamic Signal Control via Vehicle-Actuated Control (VAC) algorithm." },
+      { text: "Automated Traffic Analytics and Comprehensive Data Reporting." },
+      { text: "System Health Monitoring with Real-time FPS and Connection Tracking." },
+      { text: "Automated Notifications and Log Management for Traffic Events." }
     ],
-    githubLink: "https://github.com/yourusername/project",
+    reviews: [
+      { name: "City Traffic Management Office", text: "Mas madali nitong mabibilang ang mga sasakyan at uri ng sasakyan na dumadaan sa bawat araw at oras nito." },
+      { name: "IT Expert", text: "It has a clean UI and is very easy to navigate between modules." },
+      { name: "PDRRMO Representative", text: "Yung system niyo na 'yan is makakabuti siya sa pagiging handa ng pag-manage ng traffic." },
+      { name: "IT Expert", text: "The most user-friendly features are the automated data logging and the visual map of the intersection." },
+      { name: "City Traffic Management Office", text: "Masaya dahil mapapabilis at mapapadali ang trabaho gamit ang sistema." },
+      { name: "IT Expert", text: "I am highly likely to rely on it... objective, real-time data is far more reliable for long-term urban planning." }
+    ]
   },
   {
     id: 'msc-portal',
     title: 'Microsoft Student Community Members Portal',
     bannerImage: '/project-msc.jpg', 
-    screenshots: ['/msc-1.jpg', '/msc-2.jpg'],
+    liveLink: 'https://bulsumsc.org',
+    techStack: ['PHP', 'HTML', 'CSS', 'SQL', 'JavaScript'],
     description: [
       'Built a centralized portal for community members to access resources and events.',
       'Integrated an authentication system for secure member logins.',
-      'Created a responsive UI/UX to ensure accessibility across all device types.'
     ],
-    techStack: ['PHP', 'HTML', 'CSS', 'SQL', 'JavaScript'],
-    fullDetails: "As Director of Media for the Microsoft Student Community - BULSU, I led the development of this portal. It serves as a digital hub for members to track their event attendance and manage organizational records.",
-    features: [
-      { icon: <Layout size={20} />, text: "Personalized Member Dashboard." },
-      { icon: <Database size={20} />, text: "Admin database management system." }
-    ],
-    githubLink: "https://github.com/yourusername/project",
   },
 ];
 
 export default function ProjectsSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
-  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsVisible(true);
-    }, { threshold: 0.1 });
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
-  }, []);
-
-  const textStyle = { fontFamily: 'Arial, sans-serif', letterSpacing: '-0.06em' };
+  const handleProjectClick = (project: any) => {
+    if (project.liveLink) {
+      window.open(project.liveLink, '_blank', 'noopener,noreferrer');
+    } else {
+      setSelectedProject(project);
+    }
+  };
 
   return (
-    <section id="projects" ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center py-20 bg-transparent">
-      {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-      )}
+    <section id="projects" className="relative w-full py-24 bg-transparent overflow-visible" style={{ backgroundColor: 'rgba(255, 0, 0, 0.02)' }}>
+      {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-8">
-        <h2 
-          className={`text-6xl font-normal text-center mb-16 text-[#BC0087] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} 
-          style={{ fontFamily: 'Playfair Display, sans-serif', letterSpacing: '-0.05em' }}
-        >
-          Featured Projects
-        </h2>
+      <div className="relative z-10 w-full max-w-[1200px] px-8 mx-auto">
+        <FadeInProject index={0}>
+          <h2 className="text-8xl font-bold text-left mb-12 text-[#BC0087]" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
+            Projects
+          </h2>
+        </FadeInProject>
 
-        <div className="flex flex-col gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projectCards.map((project, index) => (
-            <div 
-              key={index}
-              className={`group bg-white border-4 border-[#BC0087] overflow-hidden flex flex-col md:flex-row transition-all duration-300 hover:shadow-xl hover:shadow-[#BC0087]/10 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transitionDelay: `${index * 200}ms` }}
-            >
-              {/* Image Container */}
-              <div className="flex-1 relative min-h-[400px] border-b-4 md:border-b-0 md:border-r-4 border-[#BC0087] bg-white">
-                <img 
-                  src={project.bannerImage} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover block" 
-                />
-              </div>
+            <FadeInProject key={project.id} index={index}>
+              <div className="flex flex-col bg-white border-2 border-[#BC0087]/50 overflow-hidden h-full rounded-xl transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1">
+                <div className="relative h-52 border-b border-[#BC0087]/30">
+                  <img src={project.bannerImage} alt={project.title} className="w-full h-full object-cover" />
+                </div>
 
-              {/* Content Container */}
-              <div className="flex-1 p-10 flex flex-col justify-between">
-                <div>
-                  {/* Languages moved ABOVE the title */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.map((tech: string, i: number) => (
-                      <span key={i} className="px-3 py-1 bg-[#FF00B8] text-white text-[8px] font-bold rounded-lg uppercase tracking-tighter">
-                        {tech}
-                      </span>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.techStack.map((tech, i) => (
+                      <span key={i} className="px-2.5 py-0.5 bg-[#FF00B8] text-white text-[10px] font-bold rounded uppercase">{tech}</span>
                     ))}
                   </div>
-
-                  <h3 className="text-3xl font-bold text-black mb-6 mt-6" style={textStyle}>
-                    {project.title}
-                  </h3>
-                  
-                  <ul className="text-gray-500 mb-5 list-disc list-inside space-y-3 text-lg text-justify" style={textStyle}>
-                    {project.description.map((point: string, i: number) => (<li key={i}>{point}</li>))}
+                  <h3 className="text-xl font-bold text-black mb-4" style={{ fontFamily: 'Arial, sans-serif' }}>{project.title}</h3>
+                  <ul className="text-gray-600 mb-8 space-y-2 text-xs list-disc list-inside text-justify" style={{ fontFamily: 'Arial, sans-serif' }}>
+                    {project.description.map((point, i) => (<li key={i}>{point}</li>))}
                   </ul>
-                </div>
-                
-                <div className="mt-auto flex justify-start">
-                  {/* "View Project" Button: changed rounded-full to rounded-md for a less rounded look */}
+                  
                   <button 
-                    onClick={() => setSelectedProject(project)}
-                    className="flex items-center justify-center gap-3 px-8 py-3 bg-[#BC0087] text-white rounded-md font-bold transition-all hover:bg-black hover:shadow-lg group whitespace-nowrap"
-                    style={textStyle}
+                    onClick={() => handleProjectClick(project)}
+                    className="mt-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#BC0087] text-white rounded-md text-xs font-bold transition-all hover:bg-black"
                   >
-                    View Project
-                    <ExternalLink size={18} className="transition-transform group-hover:translate-x-1" />
+                    {project.liveLink ? 'Visit Website' : 'View Project'}
+                    <ExternalLink size={14} />
                   </button>
                 </div>
               </div>
-            </div>
+            </FadeInProject>
           ))}
         </div>
       </div>

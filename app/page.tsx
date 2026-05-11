@@ -36,9 +36,9 @@ export default function Page() {
     switch (section) {
       case 'home': ref = homeRef; break;
       case 'about': ref = aboutRef; break;
-      case 'skills': ref = skillsRef; break;
-      case 'projects': ref = projectsRef; break;
       case 'experiences': ref = experiencesRef; break;
+      case 'projects': ref = projectsRef; break;
+      case 'skills': ref = skillsRef; break;
       default: return;
     }
     ref?.current?.scrollIntoView({ behavior: 'smooth' });
@@ -67,16 +67,11 @@ export default function Page() {
       <div ref={dividerRef}><TechDivider /></div>
       <div ref={aboutRef}><AboutSection /></div>
       <div ref={dividerRef}><TechDivider /></div>
-      
-      <div ref={skillsRef} className="bg-transparent"><SkillsSection /></div>
-      <CuteDivider />
-      <div ref={projectsRef} className="bg-transparent"><ProjectsSection /></div>
-      
-      {/* Connected seamlessly to projects */}
-      <div className="bg-transparent"><PubmatsSection /></div>
-
-      <div ref={dividerRef}><TechDivider /></div>
       <div ref={experiencesRef}><ExperiencesSection /></div>
+      <div ref={projectsRef} className="bg-transparent"><ProjectsSection /></div>
+      <div ref={dividerRef}><TechDivider /></div>
+      <div ref={skillsRef} className="bg-transparent"><SkillsSection /></div>
+      
     </main>
   );
 }

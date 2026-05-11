@@ -11,11 +11,10 @@ export default function Header({ onNavigate }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = ['home', 'about', 'skills', 'projects', 'experiences', 'contact'];
+    const sections = ['home', 'about', 'experiences', 'projects', 'skills'];
     
     const observerOptions = {
       root: null,
-      // threshold 0.5 means the section is active when 50% of it is visible
       threshold: 0.5,
     };
 
@@ -43,7 +42,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     <header className="fixed top-10 left-0 right-0 z-50 flex justify-center pt-4">
       <div className="relative w-11/12 max-w-3xl h-[60px] rounded-full overflow-hidden border border-black/50 shadow-[0_2px_2px_rgba(0,0,0,0.25)]">
 
-        {/* Image (now fills container exactly) */}
+        {/* Image Background */}
         <Image
           src="/header-container.png"
           alt="Header container"
@@ -51,7 +50,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           className="object-cover"
         />
 
-        {/* Glass layer (same exact size as image) */}
+        {/* Glass layer */}
         <div className="absolute inset-0 bg-white/20 backdrop-blur-md border border-white/30 rounded-full" />
 
         {/* Content */}
@@ -59,8 +58,18 @@ export default function Header({ onNavigate }: HeaderProps) {
           className="absolute inset-0 flex items-center justify-between px-12 font-[Arial] text-lg"
           style={{ letterSpacing: '-0.06em' }}
         >
-          <div className="flex gap-12 items-center text-black">
-            {['home', 'about', 'skills', 'projects', 'experiences'].map((section) => (
+          {/* Logo on the Left */}
+          <div 
+            className="font-extrabold text-2xl cursor-pointer" 
+            style={{ color: '#FF00B8' }}
+            onClick={() => onNavigate('home')}
+          >
+            vir.
+          </div>
+
+          {/* Navigation Links - Increased gap from 10 to 14 */}
+          <div className="flex gap-14 items-center text-black">
+            {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
               <button
                 key={section}
                 onClick={() => onNavigate(section)}
@@ -72,14 +81,6 @@ export default function Header({ onNavigate }: HeaderProps) {
               </button>
             ))}
           </div>
-          
-          <button
-            onClick={() => onNavigate('contact')}
-            className={`hover:opacity-80 transition-opacity ${isActive('contact') ? 'font-extrabold underline' : 'font-bold'}`}
-            style={{ color: '#FF00B8' }}
-          >
-            Contact Me
-          </button>
         </div>
       </div>
     </header>

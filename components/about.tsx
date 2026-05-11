@@ -47,7 +47,7 @@ export default function AboutSection() {
 
       <div className="relative w-full">
         <Image
-          src="/about-me-design.png"
+          src="/aboutme.png"
           alt="About Me"
           width={1920}
           height={1080}
@@ -55,30 +55,6 @@ export default function AboutSection() {
           className="w-full h-auto"
           priority
         />
-
-        <div className="absolute inset-0 flex items-center justify-center p-8 mt-10">
-          <div 
-            className="text-[#BC0087] text-justify"
-            style={{
-              fontFamily: "'Anonymous Pro', monospace",
-              width: '570px',
-              lineHeight: '25px',
-              letterSpacing: '-0.06em',
-              fontSize: '20px'
-            }}
-          >
-            <p className="mb-6">Hi, I’m <span className="font-bold">Virla</span>!</p>
-            
-            <p>
-              I am a <span className="underline">Web Developer and Designer</span> who enjoys 
-              building responsive and user-friendly websites. Currently a BS Mathematics 
-              major in Computer Science student at Bulacan State University, I have 
-              experience developing applications using modern technologies such as <span className="underline">React</span>, <span className="underline">TypeScript</span>, 
-              and <span className="underline">Tailwind CSS</span>, as well as designing 
-              interfaces using <span className="underline">Figma</span> and <span className="underline">Canva</span>.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );

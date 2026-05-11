@@ -6,17 +6,17 @@ import Image from 'next/image';
 const skillCards = [
   {
     title: 'Graphic Design',
-    description: 'Creating UI prototypes, publication materials, posters, infographics, banners, powerpoint presentations, and digital assets that communicate effectively.',
+    description: 'Creating publication materials, infographics, posters, banners, and powerpoint presentations.',
     logos: ['/canva.png', '/figma.png'],
   },
   {
     title: 'Web Development',
-    description: 'Building responsive, high-performance web applications with a focus on clean code and user experience.',
+    description: 'Building responsive web applications with a focus on clean code and user experience.',
     logos: ['/react.png', '/typescript.png', '/tailwind.png', '/javascript.png', '/php.png', '/sql.png', '/figma.png'],
   },
   {
     title: 'Game Development',
-    description: 'Designing and scripting immersive 2D experiences with optimized logic and physics. Creating cute pixelated sprites and animations that bring games to life.',
+    description: 'Designing and scripting immersive 2D experiences with optimized logic and physics.',
     logos: ['/unity.png', '/c-sharp.png', '/javascript.png'],
   },
 ];
@@ -43,14 +43,12 @@ export default function SkillsSection() {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative w-full flex flex-col items-center justify-center py-24 bg-transparent overflow-visible"
+      className="relative w-full flex flex-col items-center justify-center py-20 bg-transparent overflow-visible"
     >
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-        
         .fade-in-up {
           opacity: 0;
-          transform: translateY(40px);
+          transform: translateY(35px);
           transition: opacity 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9), transform 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9);
         }
         .fade-in-up.active {
@@ -60,45 +58,79 @@ export default function SkillsSection() {
         .delay-1 { transition-delay: 100ms; }
         .delay-2 { transition-delay: 300ms; }
         .delay-3 { transition-delay: 500ms; }
+        .delay-4 { transition-delay: 700ms; }
       `}</style>
 
-      <div className="relative z-10 w-full max-w-5xl px-8">
+      {/* Maintained max-width at 1000px while scaling internal elements */}
+      <div className="relative z-10 w-full max-w-[1000px] px-8">
         <h2 
-          className={`text-6xl font-bold text-center mb-16 text-[#BC0087] fade-in-up ${isVisible ? 'active' : ''}`}
-          style={{ fontFamily: 'Playfair Display, sans-serif', letterSpacing: '-0.05em' }}
+          className={`text-8xl font-bold text-center mb-10 text-[#BC0087] fade-in-up ${isVisible ? 'active' : ''}`}
+          style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}
         >
           What I Offer
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {skillCards.map((skill, index) => (
-            <div 
-              key={index}
-              className={`group bg-white/40 backdrop-blur-md border-2 border-[#BC0087]/50 p-8 rounded-xl flex flex-col items-center text-center transition-all duration-500 shadow-xl hover:bg-[#FF00B8] hover:border-[#FF0000] fade-in-up ${isVisible ? 'active' : ''} delay-${index + 1}`}
-            >
-              <h3 
-                className="text-2xl font-bold mb-4 text-[#FF00B8] group-hover:text-white transition-colors duration-300"
-                style={{ fontFamily: "'Arial', serif", letterSpacing: '-0.06em' }}
+        <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+          
+          {/* Left Column: Skill Containers - Increased padding and font sizes */}
+          <div className="flex-1 flex flex-col gap-5 lg:max-w-[45%]">
+            {skillCards.map((skill, index) => (
+              <div 
+                key={index}
+                className={`flex-1 group bg-white backdrop-blur-md border border-[#BC0087]/50 p-6 rounded-xl flex flex-col justify-between text-left transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1 fade-in-up ${isVisible ? 'active' : ''} delay-${index + 1}`}
               >
-                {skill.title}
-              </h3>
-              
-              <p 
-                className="text-gray-600 mb-8 leading-relaxed group-hover:text-white/90 transition-colors duration-300"
-                style={{ fontFamily: 'Arial, sans-serif' }}
-              >
-                {skill.description}
-              </p>
+                <div>
+                  <h3 
+                    className="text-2xl font-bold mb-2 text-[#FF00B8]"
+                    style={{ fontFamily: "Arial, sans-serif", letterSpacing: '-0.06em' }}
+                  >
+                    {skill.title}
+                  </h3>
+                  
+                  <p 
+                    className="text-gray-600 text-base leading-relaxed mb-4"
+                    style={{ fontFamily: 'Arial, sans-serif' }}
+                  >
+                    {skill.description}
+                  </p>
+                </div>
 
-              <div className="flex flex-wrap justify-center gap-4 mt-auto">
-                {skill.logos.map((logo, i) => (
-                  <div key={i} className="relative w-10 h-10 transition-transform duration-300 hover:scale-110">
-                    <Image src={logo} alt="Tech Logo" fill className="object-contain" />
-                  </div>
-                ))}
+                <div className="flex flex-wrap justify-end gap-2.5 mt-auto">
+                  {skill.logos.map((logo, i) => (
+                    <div key={i} className="relative w-8 h-8 transition-transform duration-300 hover:scale-110">
+                      <Image src={logo} alt="Tech Logo" fill className="object-contain" />
+                    </div>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Right Column: Image Container - Matches image dimensions strictly */}
+          <div className={`flex-1 hidden lg:flex items-center justify-end fade-in-up ${isVisible ? 'active' : ''} delay-4`}>
+            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-[#BC0087]/30 shadow-xl">
+              <Image 
+                src="/my-picture.png" 
+                alt="My Portrait" 
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
-          ))}
+          </div>
+
+          {/* Mobile Image */}
+          <div className={`lg:hidden flex justify-center fade-in-up ${isVisible ? 'active' : ''} delay-4`}>
+             <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-2xl overflow-hidden border border-[#BC0087]/30 shadow-xl">
+              <Image 
+                src="/my-picture.png" 
+                alt="My Portrait" 
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
