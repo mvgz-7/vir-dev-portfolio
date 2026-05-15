@@ -128,7 +128,7 @@ export default function ProjectsSection() {
                     className="mt-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#BC0087] text-white rounded-md text-xs font-bold transition-all hover:bg-black"
                   >
                     {project.liveLink ? 'Visit Website' : 'View Project'}
-                    <ExternalLink size={14} />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

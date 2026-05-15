@@ -29,13 +29,13 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
       </div>
       <div className="flex gap-6 items-center mb-4">
         <a onClick={handleEmailClick} className="flex items-center gap-2 text-white hover:text-[#86d850] hover:underline cursor-pointer">
-          <Mail size={20} /> mariavirlaeliza@gmail.com
+          <Mail className="w-5 h-5" /> mariavirlaeliza@gmail.com
         </a>
         <a href="https://linkedin.com/in/virlaeliza" className="flex items-center gap-2 text-white hover:text-[#86d850] hover:underline" target="_blank" rel="noopener noreferrer">
-          <Linkedin size={20} /> LinkedIn
+          <Linkedin className="w-5 h-5" /> LinkedIn
         </a>
         <a href="https://github.com/mvgz-7" className="flex items-center gap-2 text-white hover:text-[#86d850] hover:underline" target="_blank" rel="noopener noreferrer">
-          <Github size={20} /> GitHub
+          <Github className="w-5 h-5" /> GitHub
         </a>
       </div>
       <div className="text-xs text-white/60">&copy; {new Date().getFullYear()} Virla Getalado. All rights reserved.</div>

@@ -12,14 +12,14 @@ import {
 
 export default function TechDivider() {
   const languages = [
-    { name: 'React', icon: <Layout size={20} /> },
-    { name: 'TypeScript', icon: <Code2 size={20} /> },
-    { name: 'JavaScript', icon: <FileJson size={20} /> },
-    { name: 'Tailwind CSS', icon: <Layout size={20} /> },
-    { name: 'Python', icon: <Rat size={20} /> },
-    { name: 'SQL', icon: <Database size={20} /> }, // Replaced FastAPI with SQL
-    { name: 'Unity', icon: <Box size={20} /> },
-    { name: 'PHP', icon: <Globe size={20} /> },
+    { name: 'React', icon: <Layout className="w-5 h-5" /> },
+    { name: 'TypeScript', icon: <Code2 className="w-5 h-5" /> },
+    { name: 'JavaScript', icon: <FileJson className="w-5 h-5" /> },
+    { name: 'Tailwind CSS', icon: <Layout className="w-5 h-5" /> },
+    { name: 'Python', icon: <Rat className="w-5 h-5" /> },
+    { name: 'SQL', icon: <Database className="w-5 h-5" /> }, // Replaced FastAPI with SQL
+    { name: 'Unity', icon: <Box className="w-5 h-5" /> },
+    { name: 'PHP', icon: <Globe className="w-5 h-5" /> },
   ];
 
   const scrollingList = [...languages, ...languages, ...languages];

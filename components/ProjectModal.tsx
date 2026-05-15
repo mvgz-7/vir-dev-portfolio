@@ -45,20 +45,20 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
       {selectedImgIndex !== null && (
         <div className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4">
           <button onClick={() => setSelectedImgIndex(null)} className="absolute top-6 right-6 text-white hover:text-[#BC0087] transition-colors z-[210]">
-            <X size={40} />
+            <X className="w-10 h-10" />
           </button>
-          <button onClick={showPrev} className="absolute left-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronLeft size={48} /></button>
+          <button onClick={showPrev} className="absolute left-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronLeft className="w-12 h-12" /></button>
           <div className="relative w-full h-full max-w-5xl max-h-[80vh]">
             <Image src={project.screenshots[selectedImgIndex]} alt="Enlarged" fill className="object-contain" /> 
           </div>
-          <button onClick={showNext} className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronRight size={48} /></button>
+          <button onClick={showNext} className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all"><ChevronRight className="w-12 h-12" /></button>
         </div>
       )}
 
       {/* Header */}
       <div className="fixed top-0 left-0 right-0 h-20 flex items-center justify-between px-8 z-[110] bg-[#710150] shadow-xl border-b-2 border-white/40">
         <h1 className="text-2xl font-bold text-white uppercase" style={textStyle}>{project.title}</h1>
-        <button onClick={onClose} className="p-2 text-white hover:bg-white/20 rounded-md border-2 border-white/50 transition-all"><X size={24} /></button>
+        <button onClick={onClose} className="p-2 text-white hover:bg-white/20 rounded-md border-2 border-white/50 transition-all"><X className="w-6 h-6" /></button>
       </div>
 
       {/* Main Content Container */}
@@ -106,7 +106,7 @@ export default function ProjectModal({ project, onClose }: { project: any; onClo
                 <ul className="flex flex-col justify-between h-full">
                   {project.features?.map((feature: any, i: number) => (
                     <li key={i} className="flex items-start gap-3 group">
-                      <div className="mt-1 flex-shrink-0"><CheckCircle2 size={16} className="text-[#BC0087]" /></div>
+                      <div className="mt-1 flex-shrink-0"><CheckCircle2 className="w-4 h-4 text-[#BC0087]" /></div>
                       <span className="text-sm text-gray-800 leading-snug font-medium" style={textStyle}>{feature.text}</span>
                     </li>
                   ))}

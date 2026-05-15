@@ -64,8 +64,9 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
 
         .greetings-container {
           position: relative;
-          width: 500px;
-          height: 400px;
+          width: min(500px, 45vw);
+          aspect-ratio: 5 / 4;
+          max-width: 500px;
         }
 
         .shine-layer {
@@ -99,10 +100,10 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
           left: mousePos.x,
           top: mousePos.y,
           transform: 'translate(-50%, -50%)',
-          width: '500px',
-          height: '500px',
+          width: 'clamp(200px, 25vw, 500px)',
+          height: 'clamp(200px, 25vw, 500px)',
           background: 'radial-gradient(circle, rgba(188, 0, 135, 0.1) 0%, rgba(188, 0, 135, 0) 70%)',
-          filter: 'blur(60px)',
+          filter: 'blur( clamp(20px, 6vw, 60px) )',
         }}
       />
 
@@ -154,7 +155,7 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
               style={buttonTextStyle}
               onClick={() => onNavigateSection?.('projects')}
             >
-              <Briefcase size={26} className="text-white transition-transform group-hover:scale-110" />
+              <Briefcase className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
               View My Work
             </button>
 
@@ -163,7 +164,7 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
               style={buttonTextStyle}
               onClick={() => onScrollToFooter?.()}
             >
-              <Send size={26} className="text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
+              <Send className="w-6 h-6 text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
               Get in Touch
             </button>
           </div>
@@ -171,8 +172,8 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
       </div>
 
       {showScroll && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <Image src="/scroll-down.png" alt="Scroll down" width={80} height={100} className="w-auto h-auto" />
+        <div className="absolute bottom-[32px] left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-[8px] animate-bounce">
+          <Image src="/scroll-down.png" alt="Scroll down" width={70} height={80} className="w-auto h-auto max-w-[70px] max-h-[80px]" />
         </div>
       )}
     </section>
