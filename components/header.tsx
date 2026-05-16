@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react'; // Added icons for mobile menu
+import { Menu, X } from 'lucide-react'; 
 
 interface HeaderProps {
   activeSection: string;
@@ -13,7 +13,6 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isActive = (section: string) => activeSection === section;
 
-  // Close menu when a link is clicked
   const handleMobileNav = (section: string) => {
     onNavigate(section);
     setIsMenuOpen(false);
@@ -32,13 +31,12 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
         
         {/* Glass layer */}
         <div className="absolute inset-0 bg-white/20 backdrop-blur-md border border-white/30 rounded-full" />
-
-        {/* Desktop & Mobile Header Content */}
+        
+        {/* Main Header Row */}
         <div 
-          className="absolute inset-0 flex items-center justify-between px-8 md:px-12 font-[Arial] text-lg"
+          className="absolute inset-0 flex items-center justify-between px-6 md:px-12 font-[Arial] text-lg"
           style={{ letterSpacing: '-0.06em' }}
         >
-          {/* Logo */}
           <div 
             className="font-extrabold text-2xl cursor-pointer z-[101]" 
             style={{ color: '#FF00B8' }}
@@ -47,14 +45,14 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
             vir.
           </div>
 
-          {/* Desktop Navigation (Hidden on Mobile) */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex gap-14 items-center text-black">
             {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
               <button
                 key={section}
                 onClick={() => onNavigate(section)}
                 className={`transition-all hover:opacity-60 capitalize ${
-                  isActive(section) ? 'font-bold' : ''
+                  isActive(section) ? 'text-[#FF00B8] font-bold' : ''
                 }`}
               >
                 {section}
@@ -62,7 +60,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
             ))}
           </div>
 
-          {/* Mobile Menu Toggle (Hidden on Desktop) */}
+          {/* Mobile Hamburger Button */}
           <button 
             className="md:hidden z-[101] text-black p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -75,14 +73,15 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-x-0 top-[110px] mx-auto w-11/12 md:hidden z-[99] animate-in fade-in zoom-in duration-300">
-          <div className="relative overflow-hidden rounded-3xl border border-black/50 shadow-xl">
-             {/* Reusing your background image for consistency */}
+          <div className="relative overflow-hidden rounded-xl border border-black/50 shadow-xl">
+             {/* Reusing background image for consistency */}
             <div className="absolute inset-0">
                <Image src="/header-container.png" alt="" fill className="object-cover" />
                <div className="absolute inset-0 bg-white/40 backdrop-blur-xl" />
             </div>
             
-            <nav className="relative flex flex-col items-center py-8 gap-6 font-[Arial] text-xl">
+            {/* Mobile-focused layout: compact padding (py-4), smaller gap (gap-3.5), and text size (text-sm) */}
+            <nav className="relative flex flex-col items-center py-4 gap-3.5 font-[Arial] text-sm">
               {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
                 <button
                   key={section}

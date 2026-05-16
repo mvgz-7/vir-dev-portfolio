@@ -46,15 +46,31 @@ export default function AboutSection() {
       `}</style>
 
       <div className="relative w-full">
-        <Image
-          src="/about-me.png"
-          alt="About Me"
-          width={1920}
-          height={1080}
-          layout="responsive"
-          className="w-full h-auto"
-          priority
-        />
+        {/* MOBILE VIEW: Displays 'about-me-mobile.png' with 1080x1920 dimensions. Hidden on desktop. */}
+        <div className="block md:hidden w-full">
+          <Image
+            src="/about-me-mobile.png"
+            alt="About Me"
+            width={1080}
+            height={1920}
+            layout="responsive"
+            className="w-full h-auto"
+            priority
+          />
+        </div>
+
+        {/* DESKTOP VIEW: Keeps original 'about-me.png' with 1920x1080 dimensions. Hidden on mobile. */}
+        <div className="hidden md:block w-full">
+          <Image
+            src="/about-me.png"
+            alt="About Me"
+            width={1920}
+            height={1080}
+            layout="responsive"
+            className="w-full h-auto"
+            priority
+          />
+        </div>
       </div>
     </section>
   );

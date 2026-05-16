@@ -44,7 +44,8 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center overflow-hidden pt-[140px] md:pt-[160px] pb-20 bg-white"
+      /* ADJUSTED: Reduced pt-[140px] to pt-[90px] on mobile to pull contents higher up */
+      className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center overflow-hidden pt-[90px] md:pt-[160px] pb-20 bg-white"
     >
       <style jsx global>{`
         @keyframes cornerRoam {
@@ -109,7 +110,8 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-[80px] md:-mt-10">
+      {/* ADJUSTED: Added -mt-16 to lift elements up on mobile, kept md:-mt-10 unchanged for desktop */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-[80px] -mt-16 md:-mt-10">
         
         <div className="flex-1 flex justify-center">
           <div className="greetings-container">
@@ -156,7 +158,6 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
         </div>
       </div>
 
-      {/* FIXED: Locked down wrapper and image properties to prevent layout shifts on zoom/reload */}
       {showScroll && (
         <div className="absolute bottom-[32px] left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center gap-[8px] animate-bounce">
           <div className="relative w-[70px] h-[80px]">
