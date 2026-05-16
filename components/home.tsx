@@ -35,23 +35,21 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
     };
   }, [onScrollVisibilityChange]);
 
-  // Increased padding (px-10, py-4) and text size (text-lg) for bigger buttons
-  const buttonBaseClass = "flex items-center gap-4 px-10 py-4 text-lg font-bold transition-all duration-300 active:scale-95";
+  const buttonBaseClass = "flex items-center gap-2 md:gap-4 px-4 md:px-10 py-3 md:py-4 text-sm md:text-lg font-bold transition-all duration-300 active:scale-95";
+  
   const buttonTextStyle = { 
-    fontFamily: 'Arial, sans-serif', 
-    letterSpacing: '-0.06em',
-    borderRadius: '12px' 
+    fontFamily: 'Arial, sans-serif'
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-20 bg-white"
+      className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center overflow-hidden pt-[140px] md:pt-[160px] pb-20 bg-white"
     >
       <style jsx global>{`
         @keyframes cornerRoam {
           0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(2vw, 2vh) scale(1.05); }
+          50% { transform: translate(20px, 20px) scale(1.05); }
           100% { transform: translate(0, 0) scale(1); }
         }
 
@@ -64,9 +62,17 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
 
         .greetings-container {
           position: relative;
-          width: min(500px, 45vw);
-          aspect-ratio: 5 / 4;
-          max-width: 500px;
+          width: 340px; 
+          height: 280px;
+          margin-top: -40px; 
+        }
+        
+        @media (min-width: 768px) {
+          .greetings-container {
+            width: 500px;
+            height: 400px;
+            margin-top: 0; 
+          }
         }
 
         .shine-layer {
@@ -93,38 +99,18 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
         }
       `}</style>
 
-      {/* --- MOUSE FOLLOWER GRADIENT --- */}
-      <div 
-        className="fixed pointer-events-none z-0 transition-transform duration-500 ease-out"
-        style={{
-          left: mousePos.x,
-          top: mousePos.y,
-          transform: 'translate(-50%, -50%)',
-          width: 'clamp(200px, 25vw, 500px)',
-          height: 'clamp(200px, 25vw, 500px)',
-          background: 'radial-gradient(circle, rgba(188, 0, 135, 0.1) 0%, rgba(188, 0, 135, 0) 70%)',
-          filter: 'blur( clamp(20px, 6vw, 60px) )',
-        }}
-      />
-
-      {/* --- CORNER ANCHORED GRADIENTS --- */}
+      {/* Background Gradients */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]">
+        <div className="absolute -top-10 md:-top-20 -right-10 md:-right-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] animate-corner opacity-40 blur-[60px] md:blur-[100px]">
           <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
         </div>
-
-        <div className="absolute -top-40 -left-40 w-[700px] h-[700px] animate-corner opacity-60 blur-[80px]" style={{ animationDelay: '-5s' }}>
+        <div className="absolute -top-20 md:-top-40 -left-20 md:-left-40 w-[350px] md:w-[700px] h-[350px] md:h-[700px] animate-corner opacity-60 blur-[50px] md:blur-[80px]" style={{ animationDelay: '-5s' }}>
           <Image src="/orange-gradient-top-left.png" alt="" fill className="object-contain" />
-        </div>
-
-        <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] animate-corner opacity-40 blur-[100px]" style={{ animationDelay: '-10s' }}>
-          <Image src="/pink-gradient-bottom-left.png" alt="" fill className="object-contain" />
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex items-center justify-between gap-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-[80px] md:-mt-10">
         
-        {/* Left side - Greetings */}
         <div className="flex-1 flex justify-center">
           <div className="greetings-container">
             <Image
@@ -140,40 +126,49 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
           </div>
         </div>
 
-        {/* Right side - Content */}
-        <div className="flex-1 flex flex-col gap-10">
+        <div className="flex-1 flex flex-col items-center md:items-start gap-4 md:gap-[40px]">
+          {/* Paragraph: Hidden on mobile view using 'hidden md:block' */}
           <div 
-            className="text-black font-[Arial] text-3xl leading-snug text-justify max-w-xl" 
-            style={{ letterSpacing: '-0.06em' }}
+            className="hidden md:block text-black font-[Arial] text-xl md:text-3xl leading-snug md:leading-10 text-center md:text-justify max-w-xl tracking-[-0.04em] md:tracking-[-0.06em]" 
           >
             I'm a <span className="font-bold">Web Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern front-end technologies and I am open to different types of web projects.
           </div>
 
-          <div className="flex gap-6 items-center">
+          <div className="flex flex-row gap-3 md:gap-[24px] items-center justify-center md:justify-start w-full">
             <button 
-              className={`${buttonBaseClass} bg-[#BC0087] text-white hover:bg-[#a00073] hover:shadow-lg group`}
+              className={`${buttonBaseClass} bg-[#BC0087] text-white hover:bg-[#a00073] hover:shadow-lg group flex-1 md:flex-none justify-center rounded-[5px] md:rounded-[12px] tracking-[-0.04em] md:tracking-[-0.06em]`}
               style={buttonTextStyle}
               onClick={() => onNavigateSection?.('projects')}
             >
-              <Briefcase className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              View My Work
+              <Briefcase className="w-4 h-4 md:w-6 md:h-6 text-white" />
+              <span className="whitespace-nowrap">View My Work</span>
             </button>
 
             <button 
-              className={`${buttonBaseClass} bg-white text-[#BC0087] border-2 border-[#BC0087] hover:bg-[#BC0087] hover:text-white group`}
+              className={`${buttonBaseClass} bg-white text-[#BC0087] border-[1.5px] md:border-2 border-[#BC0087] hover:bg-[#BC0087] hover:text-white group flex-1 md:flex-none justify-center rounded-[5px] md:rounded-[12px] tracking-[-0.04em] md:tracking-[-0.06em]`}
               style={buttonTextStyle}
               onClick={() => onScrollToFooter?.()}
             >
-              <Send className="w-6 h-6 text-[#BC0087] transition-all group-hover:text-white group-hover:translate-x-1" />
-              Get in Touch
+              <Send className="w-4 h-4 md:w-6 md:h-6 transition-all" />
+              <span className="whitespace-nowrap">Get in Touch</span>
             </button>
           </div>
         </div>
       </div>
 
+      {/* FIXED: Locked down wrapper and image properties to prevent layout shifts on zoom/reload */}
       {showScroll && (
-        <div className="absolute bottom-[32px] left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-[8px] animate-bounce">
-          <Image src="/scroll-down.png" alt="Scroll down" width={70} height={80} className="w-auto h-auto max-w-[70px] max-h-[80px]" />
+        <div className="absolute bottom-[32px] left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center gap-[8px] animate-bounce">
+          <div className="relative w-[70px] h-[80px]">
+            <Image 
+              src="/scroll-down.png" 
+              alt="Scroll down" 
+              fill
+              sizes="70px"
+              priority
+              className="object-contain" 
+            />
+          </div>
         </div>
       )}
     </section>

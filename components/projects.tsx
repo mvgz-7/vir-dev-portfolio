@@ -94,41 +94,41 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="relative w-full py-24 bg-transparent overflow-visible" style={{ backgroundColor: 'rgba(255, 0, 0, 0.02)' }}>
+    <section id="projects" className="relative w-full py-16 sm:py-24 bg-transparent overflow-visible" style={{ backgroundColor: 'rgba(255, 0, 0, 0.02)' }}>
       {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 
-      <div className="relative z-10 w-full max-w-[1200px] px-8 mx-auto">
+      <div className="relative z-10 w-full max-w-[1200px] px-4 sm:px-8 mx-auto">
         <FadeInProject index={0}>
-          <h2 className="text-8xl font-bold text-left mb-12 text-[#BC0087]" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold text-center mb-8 sm:mb-12 text-[#BC0087]" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
             Projects
           </h2>
         </FadeInProject>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {projectCards.map((project, index) => (
             <FadeInProject key={project.id} index={index}>
               <div className="flex flex-col bg-white border-2 border-[#BC0087]/50 overflow-hidden h-full rounded-xl transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1">
-                <div className="relative h-52 border-b border-[#BC0087]/30">
+              <div className="relative h-40 sm:h-52 border-b border-[#BC0087]/30">
                   <img src={project.bannerImage} alt={project.title} className="w-full h-full object-cover" />
                 </div>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="p-4 sm:p-6 flex flex-col flex-1">
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-4">
                     {project.techStack.map((tech, i) => (
-                      <span key={i} className="px-2.5 py-0.5 bg-[#FF00B8] text-white text-[10px] font-bold rounded uppercase">{tech}</span>
+                      <span key={i} className="px-2 sm:px-2.5 py-0.5 bg-[#FF00B8] text-white text-[9px] sm:text-[10px] font-bold rounded uppercase">{tech}</span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-bold text-black mb-4" style={{ fontFamily: 'Arial, sans-serif' }}>{project.title}</h3>
-                  <ul className="text-gray-600 mb-8 space-y-2 text-xs list-disc list-inside text-justify" style={{ fontFamily: 'Arial, sans-serif' }}>
+                  <h3 className="text-lg sm:text-xl font-bold text-black mb-3 sm:mb-4" style={{ fontFamily: 'Arial, sans-serif' }}>{project.title}</h3>
+                  <ul className="text-gray-600 mb-6 sm:mb-8 space-y-1.5 sm:space-y-2 text-[11px] sm:text-xs list-disc list-inside text-justify" style={{ fontFamily: 'Arial, sans-serif' }}>
                     {project.description.map((point, i) => (<li key={i}>{point}</li>))}
                   </ul>
                   
                   <button 
                     onClick={() => handleProjectClick(project)}
-                    className="mt-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#BC0087] text-white rounded-md text-xs font-bold transition-all hover:bg-black"
+                    className="mt-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-[#BC0087] text-white rounded-md text-[11px] sm:text-xs font-bold transition-all hover:bg-black"
                   >
                     {project.liveLink ? 'Visit Website' : 'View Project'}
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                   </button>
                 </div>
               </div>
@@ -137,11 +137,11 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      <div className="relative w-full h-auto mt-40 flex flex-col justify-center items-center px-10">
-        <div className="max-w-7xl w-full text-center mb-10">
+      <div className="relative w-full h-auto mt-20 sm:mt-40 flex flex-col justify-center items-center px-4 sm:px-10">
+        <div className="max-w-7xl w-full text-center mb-6 sm:mb-10">
           <FadeInProject index={projectCards.length}>
             <h2 
-              className="text-2xl font-normal text-gray-600"
+              className="text-lg sm:text-2xl font-normal text-gray-600"
               style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}
               > Some of the publication materials I designed for different organizations.
             </h2>
@@ -149,7 +149,7 @@ export default function ProjectsSection() {
         </div>
         
         <FadeInProject index={projectCards.length + 1}>
-          <div className="max-w-[80%] mx-auto relative overflow-hidden border-[10px] border-[#D4C4E9]">
+          <div className="max-w-[90%] sm:max-w-[80%] mx-auto relative overflow-hidden border-[5px] sm:border-[10px] border-[#D4C4E9]">
             <img
               src="/pubmats.png" 
               alt="Publication Materials"

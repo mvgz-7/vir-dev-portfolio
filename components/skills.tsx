@@ -62,42 +62,42 @@ export default function SkillsSection() {
       `}</style>
 
       {/* Maintained max-width at 1000px while scaling internal elements */}
-      <div className="relative z-10 w-full max-w-[1000px] px-8">
+      <div className="relative z-10 w-full max-w-[1000px] px-4 sm:px-8">
         <h2 
-          className={`text-8xl font-bold text-center mb-10 text-[#BC0087] fade-in-up ${isVisible ? 'active' : ''}`}
+          className={`text-4xl sm:text-6xl md:text-8xl font-bold text-center mb-6 sm:mb-10 text-[#BC0087] fade-in-up ${isVisible ? 'active' : ''}`}
           style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}
         >
           What I Offer
         </h2>
 
-        <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 items-stretch">
           
           {/* Left Column: Skill Containers - Increased padding and font sizes */}
-          <div className="flex-1 flex flex-col gap-5 lg:max-w-[45%]">
+          <div className="flex-1 flex flex-col gap-3 sm:gap-5 lg:max-w-[45%]">
             {skillCards.map((skill, index) => (
               <div 
                 key={index}
-                className={`flex-1 group bg-white backdrop-blur-md border border-[#BC0087]/50 p-6 rounded-xl flex flex-col justify-between text-left transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1 fade-in-up ${isVisible ? 'active' : ''} delay-${index + 1}`}
+                className={`flex-1 group bg-white backdrop-blur-md border border-[#BC0087]/50 p-4 sm:p-6 rounded-xl flex flex-col justify-between text-left transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1 fade-in-up ${isVisible ? 'active' : ''} delay-${index + 1}`}
               >
                 <div>
                   <h3 
-                    className="text-2xl font-bold mb-2 text-[#FF00B8]"
+                    className="text-lg sm:text-2xl font-bold mb-2 text-[#FF00B8]"
                     style={{ fontFamily: "Arial, sans-serif", letterSpacing: '-0.06em' }}
                   >
                     {skill.title}
                   </h3>
                   
                   <p 
-                    className="text-gray-600 text-base leading-relaxed mb-4"
+                    className="text-gray-600 text-xs sm:text-base leading-relaxed mb-3 sm:mb-4"
                     style={{ fontFamily: 'Arial, sans-serif' }}
                   >
                     {skill.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap justify-end gap-2.5 mt-auto">
+                <div className="flex flex-wrap justify-end gap-1.5 sm:gap-2.5 mt-auto">
                   {skill.logos.map((logo, i) => (
-                    <div key={i} className="relative w-8 h-8 transition-transform duration-300 hover:scale-110">
+                    <div key={i} className="relative w-6 sm:w-8 h-6 sm:h-8 transition-transform duration-300 hover:scale-110">
                       <Image src={logo} alt="Tech Logo" fill className="object-contain" />
                     </div>
                   ))}
@@ -119,17 +119,7 @@ export default function SkillsSection() {
             </div>
           </div>
 
-          {/* Mobile Image */}
-          <div className={`lg:hidden flex justify-center fade-in-up ${isVisible ? 'active' : ''} delay-4`}>
-             <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-2xl overflow-hidden border border-[#BC0087]/30 shadow-xl">
-              <Image 
-                src="/my-picture.png" 
-                alt="My Portrait" 
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+
 
         </div>
       </div>
