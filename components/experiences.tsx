@@ -121,13 +121,9 @@ export default function ExperiencesSection() {
   return (
     <section
       id="experiences"
-      className="relative w-full py-32 bg-white overflow-hidden"
+      className="relative w-full py-20 sm:py-32 bg-white overflow-hidden"
     >
       {/* Background Gradients */}
-      <div 
-        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle at top right, rgba(255, 0, 0, 0.12) 0%, transparent 70%)' }} 
-      />
       <div 
         className="absolute bottom-0 left-0 w-full h-[400px] pointer-events-none z-0"
         style={{ background: 'linear-gradient(to top, rgba(255, 0, 0, 0.1) 0%, transparent 100%)' }} 

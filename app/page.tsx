@@ -81,14 +81,14 @@ export default function Page() {
     <main className="relative w-full bg-white overflow-x-hidden">
       {/* --- GLOBAL MOUSE FOLLOWER --- */}
       <div 
-        className="fixed pointer-events-none z-[9999] transition-transform duration-700 ease-out"
+        className="hidden md:block fixed pointer-events-none z-[9999] transition-transform duration-700 ease-out"
         style={{
           left: `${mousePos.x}px`, 
           top: `${mousePos.y}px`,
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(188, 0, 135, 0.07) 0%, rgba(188, 0, 135, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(188, 0, 135, 0.15) 0%, rgba(188, 0, 135, 0) 70%)',
           filter: 'blur(80px)',
         }}
       />
@@ -107,8 +107,6 @@ export default function Page() {
       <div ref={aboutRef} data-section="about" style={{ minHeight: '100vh' }}>
         <AboutSection />
       </div>
-
-      <TechDivider />
 
       <div ref={experiencesRef} data-section="experiences">
         <ExperiencesSection />

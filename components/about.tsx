@@ -38,8 +38,8 @@ export default function AboutSection() {
       ref={sectionRef}
       /* FIXED: Changed min-h-screen to min-h-0 on mobile so the section doesn't force a full screen height 
          if the image height happens to be smaller than the phone's hardware viewport. */
-      className={`relative w-full min-h-0 md:min-h-screen bg-white flex flex-col items-center transition-opacity duration-1000 ease-in-out ${
-        isVisible ? 'opacity-100' : 'opacity-0'
+      className={`relative w-full min-h-0 md:min-h-screen bg-white flex flex-col items-center transition-opacity md:duration-1000 ease-in-out ${
+        isVisible ? 'md:opacity-100' : 'md:opacity-0'
       }`}
     >
       <style jsx global>{`
