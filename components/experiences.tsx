@@ -3,13 +3,21 @@
 import { useEffect, useRef, useState, ReactNode } from 'react';
 import Image from 'next/image';
 
-// Helper component for subtle "Scroll-Down Only" repeating animation
+// Helper component for subtle "Scroll-Down Only" repeating animation (Bypassed on mobile)
 function FadeInRow({ children }: { children: ReactNode }) {
   const [isVisible, setIsVisible] = useState(false);
   const rowRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    // Check if the screen size is mobile (less than md breakpoint: 768px)
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      setIsVisible(true);
+      return; // Skip setting up the IntersectionObserver for mobile
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         const currentScrollY = window.scrollY;
@@ -44,7 +52,7 @@ function FadeInRow({ children }: { children: ReactNode }) {
       className={`transition-all duration-1000 ease-out ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-6'
+          : 'md:opacity-0 md:translate-y-6' 
       }`}
     >
       {children}

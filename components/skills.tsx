@@ -26,6 +26,14 @@ export default function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Check if the screen size is mobile (less than md breakpoint: 768px)
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      setIsVisible(true);
+      return; // Skip setting up the IntersectionObserver for mobile
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -46,19 +54,22 @@ export default function SkillsSection() {
       className="relative w-full flex flex-col items-center justify-center py-20 bg-transparent overflow-visible"
     >
       <style jsx global>{`
-        .fade-in-up {
-          opacity: 0;
-          transform: translateY(35px);
-          transition: opacity 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9), transform 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9);
+        /* Only apply hidden/translate initial states on desktop screens */
+        @media (min-width: 768px) {
+          .fade-in-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9), transform 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9);
+          }
+          .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .delay-1 { transition-delay: 100ms; }
+          .delay-2 { transition-delay: 300ms; }
+          .delay-3 { transition-delay: 500ms; }
+          .delay-4 { transition-delay: 700ms; }
         }
-        .fade-in-up.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        .delay-1 { transition-delay: 100ms; }
-        .delay-2 { transition-delay: 300ms; }
-        .delay-3 { transition-delay: 500ms; }
-        .delay-4 { transition-delay: 700ms; }
       `}</style>
 
       {/* Maintained max-width at 1000px while scaling internal elements */}
@@ -118,8 +129,6 @@ export default function SkillsSection() {
               />
             </div>
           </div>
-
-
 
         </div>
       </div>

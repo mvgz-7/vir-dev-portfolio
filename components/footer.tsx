@@ -56,7 +56,7 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
           {/* Mobile Profile Frame: Set to round circle (rounded-full) */}
           <div className="relative w-24 h-24 rounded-full overflow-hidden border border-[#BC0087]/30 shadow-lg">
             <Image 
-              src="/my-picture.png" 
+              src="/my-picture-footer.png" 
               alt="My Portrait" 
               fill
               className="object-cover"
@@ -68,7 +68,7 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
         <div className="hidden sm:block lg:hidden w-full flex justify-center mb-4 px-4">
           <div className="relative w-32 sm:w-40 aspect-[4/5] rounded-lg overflow-hidden border border-[#BC0087]/30 shadow-lg">
             <Image 
-              src="/my-picture.png" 
+              src="/my-picture-footer.png" 
               alt="My Portrait" 
               fill
               className="object-cover"

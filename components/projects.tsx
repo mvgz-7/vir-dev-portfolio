@@ -10,6 +10,14 @@ function FadeInProject({ children, index }: { children: ReactNode; index: number
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    // Check if the screen size is mobile (less than md breakpoint: 768px)
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      setIsVisible(true);
+      return; // Skip setting up the IntersectionObserver for mobile
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         const currentScrollY = window.scrollY;
@@ -35,7 +43,14 @@ function FadeInProject({ children, index }: { children: ReactNode; index: number
   }, []);
 
   return (
-    <div ref={ref} className={`transition-all duration-1000 ease-out h-full ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+    <div 
+      ref={ref} 
+      className={`transition-all duration-1000 ease-out h-full ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'md:opacity-0 md:translate-y-6'
+      }`}
+    >
       {children}
     </div>
   );

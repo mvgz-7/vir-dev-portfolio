@@ -36,8 +36,9 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      // Removed 'translate-y' classes to prevent the "appearing upwards" motion
-      className={`relative w-full min-h-screen bg-white flex flex-col items-center transition-opacity duration-1000 ease-in-out ${
+      /* FIXED: Changed min-h-screen to min-h-0 on mobile so the section doesn't force a full screen height 
+         if the image height happens to be smaller than the phone's hardware viewport. */
+      className={`relative w-full min-h-0 md:min-h-screen bg-white flex flex-col items-center transition-opacity duration-1000 ease-in-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -45,29 +46,31 @@ export default function AboutSection() {
         @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
       `}</style>
 
-      <div className="relative w-full">
-        {/* MOBILE VIEW: Displays 'about-me-mobile.png' with 1080x1920 dimensions. Hidden on desktop. */}
-        <div className="block md:hidden w-full">
+      <div className="relative w-full flex flex-col">
+        {/* MOBILE VIEW: Displays 'about-me-mobile.png' */}
+        {/* FIXED: Removed layout="responsive", added sizes, and matched the layout container block */}
+        <div className="block md:hidden w-full h-auto leading-[0] select-none">
           <Image
             src="/about-me-mobile.png"
             alt="About Me"
             width={1080}
             height={1920}
-            layout="responsive"
-            className="w-full h-auto"
+            sizes="100vw"
+            className="w-full h-auto block vertical-align-middle"
             priority
           />
         </div>
 
-        {/* DESKTOP VIEW: Keeps original 'about-me.png' with 1920x1080 dimensions. Hidden on mobile. */}
-        <div className="hidden md:block w-full">
+        {/* DESKTOP VIEW: Keeps original 'about-me.png' */}
+        {/* FIXED: Standardized to modern layout practices for consistency */}
+        <div className="hidden md:block w-full h-auto leading-[0] select-none">
           <Image
             src="/about-me.png"
             alt="About Me"
             width={1920}
             height={1080}
-            layout="responsive"
-            className="w-full h-auto"
+            sizes="100vw"
+            className="w-full h-auto block vertical-align-middle"
             priority
           />
         </div>
