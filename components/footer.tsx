@@ -27,6 +27,18 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
       */}
       <div className="w-full max-w-xl px-6 grid grid-cols-[1fr_auto] items-center gap-4 sm:flex sm:flex-col sm:items-center sm:gap-0">
         
+        {/* ORIGINAL DESKTOP PORTRAIT BLOCK (Only renders from tablet-width 'sm' upwards to keep desktop layout intact) */}
+        <div className="hidden sm:flex lg:hidden w-full flex justify-center mb-4 px-4">
+          <div className="relative w-28 h-28 rounded-full overflow-hidden border border-[#BC0087]/30 shadow-lg">
+            <Image 
+              src="/my-picture-footer.png" 
+              alt="My Portrait" 
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
         {/* LEFT COLUMN ON MOBILE / TOP BLOCK ON DESKTOP */}
         <div className="flex flex-col items-start sm:items-center">
           {/* Header Texts */}
@@ -64,17 +76,7 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
 
-        {/* ORIGINAL DESKTOP PORTRAIT BLOCK (Only renders from tablet-width 'sm' upwards to keep desktop layout intact) */}
-        <div className="hidden sm:block lg:hidden w-full flex justify-center mb-4 px-4">
-          <div className="relative w-32 sm:w-40 aspect-[4/5] rounded-lg overflow-hidden border border-[#BC0087]/30 shadow-lg">
-            <Image 
-              src="/my-picture-footer.png" 
-              alt="My Portrait" 
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
+        
 
       </div>
 

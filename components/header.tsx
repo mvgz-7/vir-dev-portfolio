@@ -67,19 +67,16 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
           </div>
 
           {/* Desktop Navigation Link Tabs (Right) */}
-          <nav className="hidden md:flex gap-10 font-[Arial] text-[13px] font-normal tracking-wide">
+          <nav className="hidden md:flex gap-10 font-[Arial] text-[16px] font-normal tracking-[-0.02em]">
             {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
               <button
                 key={section}
                 onClick={() => onNavigate(section)}
-                className={`capitalize transition-colors relative pb-1 ${
-                  isActive(section) ? 'text-[#FF00B8] font-bold' : 'text-black hover:text-gray-600'
+                className={`capitalize transition-colors relative ${
+                  isActive(section) ? 'font-bold' : 'text-black hover:text-gray-600'
                 }`}
               >
                 {section}
-                {isActive(section) && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FF00B8]" />
-                )}
               </button>
             ))}
           </nav>

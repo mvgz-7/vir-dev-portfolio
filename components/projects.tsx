@@ -109,7 +109,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="relative w-full py-16 sm:py-24 bg-transparent overflow-visible" style={{ backgroundColor: 'rgba(255, 0, 0, 0.02)' }}>
+    <section id="projects" className="relative w-full py-16 sm:py-24 bg-white overflow-visible">
       {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 
       <div className="relative z-10 w-full max-w-[1200px] px-4 sm:px-8 mx-auto">

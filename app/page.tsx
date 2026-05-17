@@ -108,12 +108,12 @@ export default function Page() {
         <AboutSection />
       </div>
 
-      <div ref={experiencesRef} data-section="experiences">
-        <ExperiencesSection />
-      </div>
-
       <div ref={projectsRef} data-section="projects">
         <ProjectsSection />
+      </div>
+
+      <div ref={experiencesRef} data-section="experiences">
+        <ExperiencesSection />
       </div>
 
       <TechDivider />

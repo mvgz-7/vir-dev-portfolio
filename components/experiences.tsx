@@ -121,7 +121,7 @@ export default function ExperiencesSection() {
   return (
     <section
       id="experiences"
-      className="relative w-full py-20 sm:py-32 bg-white overflow-hidden"
+      className="relative w-full py-20 sm:py-32 bg-transparent overflow-hidden" style={{ backgroundColor: 'rgba(255, 0, 0, 0.04)' }}
     >
       {/* Background Gradients */}
       <div 
