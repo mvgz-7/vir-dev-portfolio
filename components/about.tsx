@@ -51,7 +51,7 @@ export default function AboutSection() {
         {/* FIXED: Removed layout="responsive", added sizes, and matched the layout container block */}
         <div className="block md:hidden w-full h-auto leading-[0] select-none">
           <Image
-            src="/about-me-mobile.png"
+            src="/about-me-mobile-view.png"
             alt="About Me"
             width={1080}
             height={1920}
@@ -65,7 +65,7 @@ export default function AboutSection() {
         {/* FIXED: Standardized to modern layout practices for consistency */}
         <div className="hidden md:block w-full h-auto leading-[0] select-none">
           <Image
-            src="/about-me.png"
+            src="/about-me-new.png"
             alt="About Me"
             width={1920}
             height={1080}

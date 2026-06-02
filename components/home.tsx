@@ -133,7 +133,7 @@ export default function HomeSection({ onScrollVisibilityChange, onNavigateSectio
           <div 
             className="hidden md:block text-black font-[Arial] text-xl md:text-3xl leading-snug md:leading-10 text-center md:text-justify max-w-xl tracking-[-0.04em] md:tracking-[-0.06em]" 
           >
-            I'm a <span className="font-bold">Web Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern front-end technologies and I am open to different types of web projects.
+            I'm a <span className="font-bold">Full-Stack Developer</span> and a <span className="font-bold">Graphic Designer</span>. I can build responsive websites using modern technologies and I am open to different types of web projects.
           </div>
 
           <div className="flex flex-row gap-3 md:gap-[24px] items-center justify-center md:justify-start w-full">

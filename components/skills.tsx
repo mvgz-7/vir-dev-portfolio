@@ -7,7 +7,7 @@ const skillCards = [
   {
     title: 'Web Development',
     description: 'Building responsive web applications with a focus on clean code and user experience.',
-    logos: ['/react.png', '/typescript.png', '/tailwind.png', '/javascript.png', '/php.png', '/sql.png', '/figma.png'],
+    logos: ['/c-sharp.png', '/react.png', '/typescript.png', '/tailwind.png', '/javascript.png', '/php.png', '/sql.png', '/figma.png'],
   },
   {
     title: 'Graphic Design',

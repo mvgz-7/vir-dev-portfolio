@@ -46,7 +46,7 @@ const Footer = forwardRef<HTMLElement>((props, ref) => {
             <h3 className="text-xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
               Let's Connect!
             </h3>
-            <p className="text-white/80 text-xs sm:text-base">I'm available for freelance work and collaborations!</p> 
+            <p className="text-white/80 text-xs sm:text-base">I'm open for work and collaborations!</p> 
           </div>
 
           {/* Contact Details Links */}
