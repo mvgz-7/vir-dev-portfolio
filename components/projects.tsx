@@ -65,8 +65,9 @@ const projectCards = [
     fullDetails: "The objective of this project is to develop a system that automates vehicle counting and dynamically adjusts traffic light timings to improve traffic flow at the Capitol View and Graceland intersections in Malolos, Bulacan. The target users include the City Traffic Management Office (CTMO) for daily operations, and the CDRRMO / PDRRMO for urban planning and emergency coordination.",
     techStack: ['Python', 'FastAPI', 'React', 'Next.js', 'YOLO11', 'SQL', 'OpenCV'],
     description: [
-      'Developed a computer vision system using YOLO11 for real-time vehicle detection.',
+      'Developed an automated traffic monitoring system utilizing YOLO11 for real-time vehicle detection and data acquisition from CCTV video feeds.',
       'Implemented dynamic traffic light logic to optimize flow based on vehicle density.',
+      'Achieved a 9.3/10 usability rating from IT experts, validating a commitment to software quality and clear interface design.',
     ],
     features: [
       { text: "Real-time Vehicle Detection & Classification using YOLO11m." },
@@ -93,6 +94,31 @@ const projectCards = [
     description: [
       'Built a centralized portal for community members to access resources and events.',
       'Integrated an authentication system for secure member logins.',
+      'Utilized secure database structures for event registration, students management, and attendance verification.',
+    ],
+  },
+  {
+    id: 'cleandata-studio',
+    title: 'CleanData Studio',
+    bannerImage: '/cleandata.jpeg', 
+    liveLink: 'https://bulsumsc.org',
+    techStack: ['C#', 'ASP.NET', 'React', 'Typescript'],
+    description: [
+      'Architected and developed a full-stack data management web application designed to process information into action through analytics-based solutions.',
+      'Applied spec-driven development patterns to map out data flows and reduce technical debt within both frontend views and backend API routing.',
+    ],
+    inProgress: true,
+  },
+  {
+    id: 'gene-expression',
+    title: 'Gene Expression Cancer RNA-Seq Analysis',
+    bannerImage: '/gene-expression.jpg', 
+    liveLink: 'https://github.com/mvgz-7/gene-expression-cancer-rna/blob/main/machine_learning_group.ipynb',
+    techStack: ['Python', 'Pandas', 'Numpy', 'Pyplot', 'Seaborn'],
+    description: [
+      'Classified cancer types based on gene expression patterns using machine learning.',
+      'Cleaned and preprocessed the dataset before applying classification models such as Logistic Regression and Random Forest.',
+      'Demonstrated a complete machine learning workflow, including data inspection, data cleaning, feature selection, model training, evaluation, and interpretation of results.',
     ],
   },
 ];
@@ -101,6 +127,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
   const handleProjectClick = (project: any) => {
+    if (project.inProgress) return; // Do nothing if the project is still in progress
     if (project.liveLink) {
       window.open(project.liveLink, '_blank', 'noopener,noreferrer');
     } else {
@@ -140,10 +167,21 @@ export default function ProjectsSection() {
                   
                   <button 
                     onClick={() => handleProjectClick(project)}
-                    className="mt-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-[#BC0087] text-white rounded-md text-[11px] sm:text-xs font-bold transition-all hover:bg-black"
+                    className={`mt-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-md text-[11px] sm:text-xs font-bold transition-all ${
+                      project.inProgress 
+                        ? 'bg-slate-400 text-white cursor-not-allowed' 
+                        : 'bg-[#BC0087] text-white hover:bg-black'
+                    }`}
+                    disabled={project.inProgress}
                   >
-                    {project.liveLink ? 'Visit Website' : 'View Project'}
-                    <ExternalLink className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                    {project.inProgress ? (
+                      <span>Deployment In Progress</span>
+                    ) : (
+                      <>
+                        <span>View Project</span>
+                        <ExternalLink className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
