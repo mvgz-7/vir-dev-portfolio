@@ -68,7 +68,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
 
           {/* Desktop Navigation Link Tabs (Right) */}
           <nav className="hidden md:flex gap-10 font-[Arial] text-[16px] font-normal tracking-[-0.02em]">
-            {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
+            {['home', 'about', 'projects', 'experiences', 'skills'].map((section) => (
               <button
                 key={section}
                 onClick={() => onNavigate(section)}
@@ -105,7 +105,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
             
             {/* Mobile links navigation container */}
             <nav className="relative flex flex-col items-center py-4 gap-3.5 font-[Arial] text-md">
-              {['home', 'about', 'experiences', 'projects', 'skills'].map((section) => (
+              {['home', 'about', 'projects', 'experiences', 'skills'].map((section) => (
                 <button
                   key={section}
                   onClick={() => handleMobileNav(section)}
