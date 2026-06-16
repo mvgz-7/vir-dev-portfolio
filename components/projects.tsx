@@ -113,7 +113,7 @@ const projectCards = [
     id: 'gene-expression',
     title: 'Gene Expression Cancer RNA-Seq Analysis',
     bannerImage: '/gene-expression.jpg', 
-    liveLink: 'https://github.com/mvgz-7/gene-expression-cancer-rna/blob/main/machine_learning_group.ipynb',
+    liveLink: 'https://github.com/mvgz-7/gene-expression-cancer-rna/blob/main/machine_learning.ipynb',
     techStack: ['Python', 'Pandas', 'Numpy', 'Pyplot', 'Seaborn'],
     description: [
       'Classified cancer types based on gene expression patterns using machine learning.',
