@@ -63,7 +63,7 @@ const projectCards = [
     bannerImage: '/project-traffic.jpg', 
     screenshots: ['/traffic1.jpg', '/traffic2.jpg', '/traffic3.jpg', '/traffic4.jpg', '/traffic5.jpg', '/traffic6.jpg', '/traffic7.jpg', '/traffic8.jpg', '/traffic9.jpg'],
     fullDetails: "The objective of this project is to develop a system that automates vehicle counting and dynamically adjusts traffic light timings to improve traffic flow at the Capitol View and Graceland intersections in Malolos, Bulacan. The target users include the City Traffic Management Office (CTMO) for daily operations, and the CDRRMO / PDRRMO for urban planning and emergency coordination.",
-    techStack: ['Python', 'FastAPI', 'React', 'Next.js', 'YOLO11', 'SQL', 'OpenCV'],
+    techStack: ['Python', 'FastAPI', 'React', 'Node.js', 'YOLO11', 'SQL', 'OpenCV'],
     description: [
       'Developed an automated traffic monitoring system utilizing YOLO11 for real-time vehicle detection and data acquisition from CCTV video feeds.',
       'Implemented dynamic traffic light logic to optimize flow based on vehicle density.',
