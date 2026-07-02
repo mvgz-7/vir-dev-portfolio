@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const skillCards = [
   {
-    title: 'Web Development',
+    title: 'Full-Stack Development',
     description: 'Building responsive web applications with a focus on clean code and user experience.',
     logos: ['/c-sharp.png', '/react.png', '/typescript.png', '/tailwind.png', '/javascript.png', '/php.png', '/sql.png', '/figma.png'],
   },

@@ -117,8 +117,9 @@ const projectCards = [
     liveLink: 'https://cleandatastudio.onrender.com',
     techStack: ['C#', 'ASP.NET', 'React', 'Typescript'],
     description: [
-      'Architected and developed a full-stack data management web application designed to process information into action through analytics-based solutions.',
-      'Applied spec-driven development patterns to map out data flows and reduce technical debt within both frontend views and backend API routing.',
+      'Designed and built a backend processing engine utilizing C# and ASP.NET Core Web API to handle large data manipulations.',
+      'Applied LINQ and Entity Framework Core for complex database querying and data normalization, programmatically parsing uploaded CSV files to isolate and remove duplicates and structural anomalies.',
+      'Configured custom Dockerfile to containerize the application, ensuring multi-environment configuration parity and localized cloud testing.',
     ],
   },
   {
