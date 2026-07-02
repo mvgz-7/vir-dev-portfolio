@@ -4,6 +4,20 @@ import { useEffect, useState, useRef, ReactNode } from 'react';
 import { ExternalLink, Cpu, Layout, Database } from 'lucide-react';
 import ProjectModal from './ProjectModal';
 
+interface Project {
+  id: string;
+  title: string;
+  bannerImage: string;
+  screenshots?: string[];
+  fullDetails?: string;
+  techStack: string[];
+  description: string[];
+  features?: Array<{ text: string }>;
+  reviews?: Array<{ name: string; text: string }>;
+  liveLink?: string;
+  inProgress?: boolean;
+}
+
 function FadeInProject({ children, index }: { children: ReactNode; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -123,9 +137,9 @@ const projectCards = [
 ];
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const handleProjectClick = (project: any) => {
+  const handleProjectClick = (project: Project) => {
     if (project.inProgress) return; // Do nothing if the project is still in progress
     if (project.liveLink) {
       window.open(project.liveLink, '_blank', 'noopener,noreferrer');
