@@ -101,13 +101,12 @@ const projectCards = [
     id: 'cleandata-studio',
     title: 'CleanData Studio',
     bannerImage: '/cleandata.jpeg', 
-    liveLink: 'https://bulsumsc.org',
+    liveLink: 'https://cleandatastudio.onrender.com',
     techStack: ['C#', 'ASP.NET', 'React', 'Typescript'],
     description: [
       'Architected and developed a full-stack data management web application designed to process information into action through analytics-based solutions.',
       'Applied spec-driven development patterns to map out data flows and reduce technical debt within both frontend views and backend API routing.',
     ],
-    inProgress: true,
   },
   {
     id: 'gene-expression',
