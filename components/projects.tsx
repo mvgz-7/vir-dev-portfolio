@@ -15,7 +15,6 @@ interface Project {
   features?: Array<{ text: string }>;
   reviews?: Array<{ name: string; text: string }>;
   liveLink?: string;
-  inProgress?: boolean;
 }
 
 function FadeInProject({ children, index }: { children: ReactNode; index: number }) {
@@ -140,7 +139,6 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleProjectClick = (project: Project) => {
-    if (project.inProgress) return; // Do nothing if the project is still in progress
     if (project.liveLink) {
       window.open(project.liveLink, '_blank', 'noopener,noreferrer');
     } else {
@@ -178,23 +176,12 @@ export default function ProjectsSection() {
                     {project.description.map((point, i) => (<li key={i}>{point}</li>))}
                   </ul>
                   
-                  <button 
+                  <button
                     onClick={() => handleProjectClick(project)}
-                    className={`mt-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-md text-[11px] sm:text-xs font-bold transition-all ${
-                      project.inProgress 
-                        ? 'bg-slate-400 text-white cursor-not-allowed' 
-                        : 'bg-[#BC0087] text-white hover:bg-black'
-                    }`}
-                    disabled={project.inProgress}
+                    className="mt-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-md text-[11px] sm:text-xs font-bold transition-all bg-[#BC0087] text-white hover:bg-black"
                   >
-                    {project.inProgress ? (
-                      <span>Deployment In Progress</span>
-                    ) : (
-                      <>
-                        <span>View Project</span>
-                        <ExternalLink className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
-                      </>
-                    )}
+                    <span>View Project</span>
+                    <ExternalLink className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                   </button>
                 </div>
               </div>
