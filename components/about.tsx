@@ -38,8 +38,8 @@ export default function AboutSection() {
       ref={sectionRef}
       /* FIXED: Changed min-h-screen to min-h-0 on mobile so the section doesn't force a full screen height 
          if the image height happens to be smaller than the phone's hardware viewport. */
-      className={`relative w-full min-h-0 md:min-h-screen bg-white flex flex-col items-center transition-opacity md:duration-1000 ease-in-out ${
-        isVisible ? 'md:opacity-100' : 'md:opacity-0'
+      className={`relative w-full min-h-0 lg:min-h-screen bg-white flex flex-col items-center transition-opacity lg:duration-1000 ease-in-out ${
+        isVisible ? 'lg:opacity-100' : 'lg:opacity-0'
       }`}
     >
       <style jsx global>{`
@@ -49,7 +49,7 @@ export default function AboutSection() {
       <div className="relative w-full flex flex-col">
         {/* MOBILE VIEW: Displays 'about-me-mobile.png' */}
         {/* FIXED: Removed layout="responsive", added sizes, and matched the layout container block */}
-        <div className="block md:hidden w-full h-auto leading-[0] select-none">
+        <div className="block lg:hidden w-full h-auto leading-[0] select-none">
           <Image
             src="/about-me-mobile-view.png"
             alt="About Me"
@@ -63,7 +63,7 @@ export default function AboutSection() {
 
         {/* DESKTOP VIEW: Keeps original 'about-me.png' */}
         {/* FIXED: Standardized to modern layout practices for consistency */}
-        <div className="hidden md:block w-full h-auto leading-[0] select-none">
+        <div className="hidden lg:block w-full h-auto leading-[0] select-none">
           <Image
             src="/about-me-new.png"
             alt="About Me"

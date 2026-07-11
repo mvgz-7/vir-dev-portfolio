@@ -153,12 +153,12 @@ export default function ProjectsSection() {
 
       <div className="relative z-10 w-full max-w-[1200px] px-4 sm:px-8 mx-auto">
         <FadeInProject index={0}>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold text-center mb-8 sm:mb-12 text-[#BC0087]" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
+          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-center mb-8 sm:mb-12 text-[#BC0087]" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '-0.05em' }}>
             Projects
           </h2>
         </FadeInProject>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projectCards.map((project, index) => (
             <FadeInProject key={project.id} index={index}>
               <div className="flex flex-col bg-white border-2 border-[#BC0087]/50 overflow-hidden h-full rounded-xl transition-all duration-300 shadow-md hover:shadow-[#BC0087]/40 hover:-translate-y-1">
